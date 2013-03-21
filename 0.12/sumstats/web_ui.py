@@ -243,7 +243,7 @@ class SumTicketDataSourceProvider(Component):
         milestone_re = re.compile(r"/milestone/(?P<milestone>[^?]+)")
         match = milestone_re.search(path)
         if match:
-            name = urllib.unquote(match.groupdict()['milestone'])
+            name = urllib.unquote(match.groupdict()['milestone']).decode("utf-8")
             for m in Milestone.select(self.env, include_completed=True):
                 if m.name == name:
                     return m
